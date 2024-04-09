@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Trade Bot</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+  <script src="{{url_for('static',filename='ajax.js')}}"></script>
+
+  </head>
+  
+</head>
+<body>
+  <div class="container">
+  <section class="hero">
+    
+      <h1 class="animated-text">Powerful Copytrading for Crypto & Forex</h1>
+      <h5 class="para">Automate your trades and amplify returns.</h5>
+      
+    
+  </section>
+  
+  <section>
+
+  <h3 id = "text"></h3>
+  <ul class="timeframe">
+    <li id="5m" onclick="getTimeframe(this)">5m</li>
+    <li id="15m" onclick="getTimeframe(this)">15m</li>
+    <li id="30m" onclick="getTimeframe(this)">30m</li>
+    <li class="hour" onclick="getTimeframe(this)">1h</li>
+    <li id="4h" onclick="getTimeframe(this)">4h</li>
+    <li id="1d" onclick="getTimeframe(this)">1d</li>
+  </ul>
+
+  <div class="center" id="tvchart" ></div>
+  
+  </section>
+  <section class="three">
+    
+      <form action="/saved" method="POST" class="form">
+        
+        <h3 > Custom Spot Grid</h3>
+        
+        <br>
+        <label name = "symbol">Symbol: </label>
+        <input type="text" name="symbol"  value="BTCUSDT" placeholder=" Enter Symbol"  id="symbol" onkeyup="" required oninput="upperCase()">
+
+        <label name="Lowest">low price: </label>
+        <input type="number" name="Lowest"   placeholder="Lowest Price" id="Lowest" required max="100000" min="0">
+
+        <label name="Highest">high price: </label>
+        <input type="number" name="Highest"   placeholder="Highest Price" id="Highest" required max="100000" min="0">
+        <label>Trigger price: </label>
+        <input type="number" name="Trigger" id="Trigger" value="" placeholder="Trigger price" max="100000" min="0">
+
+        <label for="Amount" id="AmountLabel" >Amount: </label>
+
+        <input type="number" name="Amount" id="Amount"  placeholder="Amount in Usdt" required max="100000" min="6" value="6">
+
+        <div class="available">
+          <p>Available</p>
+          <br>
+          <p id="usdt-amount">{{usdt}} Usdt</p>
+
+        </div>
+       
+
+        <div class="Invest">
+
+          <input type="checkbox" id="hideAmount" name="total">
+          <p id="invest">Auto Invest</p>
+        </div>
+
+        
+        <button type="submit" id="submit">Buy</button>
+       
+        
+      </form>
+
+    
+  </section>
+  <section class="for">
+    
+
+    <p class="l">Limit orders list</p>
+    <nav class="navbar">
+      <ul class="nav-list">
+        <!-- <li class="nav"><a href="#">date</a></li> -->
+        <li class="nav"><a href="#">symbol</a></li>
+        <li class="nav"><a href="#">price</a></li>
+        <!-- <li class="nav"><a href="#">type</a></li> -->
+        <li class="nav"><a href="#">amount</a></li>
+      </ul>
+    </nav>
+    <div id = 'table-data'>
+
+      
+    </div>
+    
+  
+</section>
+  </div>
+  
+
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+<script src="static/index.js"></script>
+</body>
+</html>
